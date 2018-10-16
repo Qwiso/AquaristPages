@@ -1,28 +1,42 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+
+import { Main } from './components/Main'
+
+const checkAuth = () => {
+  return true
+}
+
+const AuthRoute = ({ component, ...rest }) => (
+  <Route {...rest} render={props => (
+    checkAuth() ?
+    // <Component {...props} /> :
+    renderMergedProps(component, props, rest) :
+    <Redirect to={{pathname: '/login'}} />
+  )} />
+)
+
+const renderMergedProps = (component, ...rest) => {
+  const finalProps = Object.assign({}, ...rest)
+  return (
+    React.createElement(component, finalProps)
+  )
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <BrowserRouter>
+          <section name="content">
+            <div className="container-fluid p-0">
+              <Switch>
+                <AuthRoute exact path="/" component={Main} />
+              </Switch>
+            </div>
+          </section>
+      </BrowserRouter>
+    )
   }
 }
 
-export default App;
+export default App
