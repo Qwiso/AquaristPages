@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import { Main } from './components/Main'
+import { Marketplace } from './components/Marketplace'
 
 const checkAuth = () => {
   return true
@@ -33,6 +34,7 @@ class App extends Component {
             <div className="container-fluid p-0">
               <Switch>
                 <AuthRoute exact path="/" component={Main} />
+                <AuthRoute exact path="/marketplace" component={Marketplace} />
               </Switch>
             </div>
           </section>
