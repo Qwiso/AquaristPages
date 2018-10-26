@@ -8,7 +8,8 @@ import Navigation from './components/Navigation'
 import withAuthentication from './withAuthentication'
 
 import Main from './components/Main'
-import { Login } from './components/Login'
+import Profile from './components/User/Profile'
+import Login from './components/Login'
 import Marketplace from './components/Marketplace'
 
 const firebaseConfig = {
@@ -46,11 +47,11 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className='container-fluid'>
           <Navigation authUser={this.state.authUser} />
-          
-          <Route path="/" component={Main} />
-          <Route path="/marketplace" component={Marketplace} />
+
+          <Route path="/" component={Marketplace} />
+          <Route path="/profile" component={Profile} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
         </div>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 
-export class Login extends Component {
+export default class Login extends Component {
     state = {
         db: this.db = firebase.database()
     }
 
-    onFacebookLogin = () => {
+    facebookLogin = () => {
         let provider = new firebase.auth.FacebookAuthProvider()
         firebase.auth().signInWithPopup(provider).then(({ user, credential, additionalUserInfo }) => {
             let currentUser = firebase.auth().currentUser
@@ -31,8 +31,8 @@ export class Login extends Component {
 
     render() { 
         return (
-            <div>
-                <button onClick={this.onFacebookLogin}>Login With Facebook</button>
+            <div className='d-flex justify-content-center'>
+                <button className='col-6 btn btn-default btn-block text-white' style={{backgroundColor: "#3B5998"}} onClick={this.facebookLogin}>Login with <i className='fab fa-facebook'></i></button>
             </div>
         )
     }
