@@ -132,7 +132,7 @@ class CreateMarketItem extends Component {
         return (
             <form id="form_createMarketItem">
                 <div className="d-flex justify-content-center">
-                    <div className="col-6 pt-3">
+                    <div className="col-8 pt-3">
                         <div className="row pb-3">
                             <div className="col">
                                 <select defaultValue="1" onChange={() => {}} className="form-control" name="category" required>
@@ -181,13 +181,8 @@ class CreateMarketItem extends Component {
                                     </div>
                                     <input data-viewtype="create" type="file" accept="image/*" name="media_url" onChange={(e) => this.fileLoaded(e)} required />
                                 </div>
+                                <button type="submit" className="btn btn-primary float-right">Create</button>
                                 <img className="img-fluid d-block mx-auto pt-3" />
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col d-flex justify-content-end">
-                                <button type="submit" className="btn btn-primary">Create</button>
                             </div>
                         </div>
                     </div>

@@ -5,41 +5,49 @@ import Modal from 'react-modal'
 
 import CreateMarketItem from './Marketplace/Item/Create'
 
+Modal.setAppElement('#root')
+const modalStyle = {
+    content: {
+        width: '66%',
+        left: '17%'
+    },
+    overlay: {
+        background: 'rgba(0,0,0,0.5)'
+    }
+}
+
 const authCondition = (authUser) => !!authUser
 
 class Marketplace extends Component {
     state = {
-        createItemVisible: true,
-        modalIsOpen: false
+        createItemVisible: false
     }
 
-    openModal = () => {
-        this.setState({modalIsOpen: true})
+    createItemShow = () => {
+        this.setState({
+            createItemVisible: true
+        })
     }
     
-    afterOpenModal = () => {
-        // references are now sync'd and can be accessed.
-        // this.subtitle.style.color = '#f00'
-    }
-    
-    closeModal = () => {
-        this.setState({modalIsOpen: false})
+    createItemHide = () => {
+        this.setState({
+            createItemVisible: false
+        })
     }
     
     render() {
         return (
             <div>
-                <button className='btn btn-info col-2' onClick={this.openModal}>Create Item</button>
+                <button className='btn btn-info col-2' onClick={this.createItemShow}>Create Item</button>
 
                 <div className='d-flex'>
                     <h3>banana</h3>
                 </div>
 
                 <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    contentLabel='Example Modal'>
+                    style={modalStyle}
+                    isOpen={this.state.createItemVisible}
+                    onRequestClose={this.createItemHide} >
 
                     <CreateMarketItem />
                 </Modal>
