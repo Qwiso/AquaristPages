@@ -128,10 +128,10 @@ export class Marketplace extends Component {
     
     render() { 
         return (
-            <div>
+            <div className={this.props.visible ? "" : "d-none"}>
                 <form id="form_createMarketItem">
-                    <div className="row bg-white">
-                        <div className="col pt-3">
+                    <div className="d-flex justify-content-center">
+                        <div className="col-6 pt-3">
                             <div className="row pb-3">
                                 <div className="col">
                                     <select defaultValue="1" onChange={() => {}} className="form-control" name="category" required>
