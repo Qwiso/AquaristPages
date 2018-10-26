@@ -10,7 +10,7 @@ export default class Login extends Component {
         let provider = new firebase.auth.FacebookAuthProvider()
         firebase.auth().signInWithPopup(provider).then(({ user, credential, additionalUserInfo }) => {
             let currentUser = firebase.auth().currentUser
-            this.state.db.ref('/users/' + currentUser.uid).once('value').then((snapshot) => {
+            this.state.db.ref('users/' + currentUser.uid).once('value').then((snapshot) => {
                 if (snapshot.val() === null) {
                     if (user && credential && additionalUserInfo) {
                         this.state.db.ref('users/' + currentUser.uid).set({

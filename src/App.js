@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import firebase from 'firebase'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
@@ -23,7 +23,7 @@ firebase.initializeApp(firebaseConfig)
 
 const Logout = () => {
   firebase.auth().signOut()
-  window.location.href = '/'
+  return <Redirect to='/' />
 }
 
 class App extends Component {

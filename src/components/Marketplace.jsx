@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import withAuthorization from '../withAuthorization'
 
 import Modal from 'react-modal'
-
 import CreateMarketItem from './Marketplace/Item/Create'
 
 Modal.setAppElement('#root')
@@ -15,8 +14,6 @@ const modalStyle = {
         background: 'rgba(0,0,0,0.5)'
     }
 }
-
-const authCondition = (authUser) => !!authUser
 
 class Marketplace extends Component {
     state = {
@@ -41,7 +38,7 @@ class Marketplace extends Component {
                 <button className='btn btn-info col-2' onClick={this.createItemShow}>Create Item</button>
 
                 <div className='d-flex'>
-                    <h3>banana</h3>
+                    
                 </div>
 
                 <Modal
@@ -56,4 +53,5 @@ class Marketplace extends Component {
     }
 }
 
+const authCondition = (authUser) => !!authUser
 export default withAuthorization(authCondition)(Marketplace)

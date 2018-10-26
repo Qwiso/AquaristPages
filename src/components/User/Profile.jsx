@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import withAuthorization from '../../withAuthorization'
 
 class Profile extends Component {
-    state = {  }
-    render() { 
+    state = { }
+
+    render() {
+        console.log(this.props)
         return (
-            <h3>profile</h3>
+            <h3>{this.props.user.displayName}</h3>
         )
     }
 }
- 
-export default Profile
+
+const authCondition = (authUser) => !!authUser
+export default withAuthorization(authCondition)(Profile)
