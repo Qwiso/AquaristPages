@@ -48,6 +48,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Navigation authUser={this.state.authUser} />
+          
           <Route path="/" component={Main} />
           <Route path="/marketplace" component={Marketplace} />
           <Route path="/login" component={Login} />
