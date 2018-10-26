@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 import firebase from 'firebase'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-import Navigation from './components/Navigation'
+import Navigation from './components/UI/Navigation'
 import withAuthentication from './withAuthentication'
 
-import Main from './components/Main'
 import Profile from './components/User/Profile'
 import Login from './components/Login'
 import Marketplace from './components/Marketplace'
@@ -24,7 +23,7 @@ firebase.initializeApp(firebaseConfig)
 
 const Logout = () => {
   firebase.auth().signOut()
-  return <Redirect to="/login" />
+  return <Link to="/login" />
 }
 
 class App extends Component {

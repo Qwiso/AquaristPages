@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import AuthUserContext from '../AuthUserContext'
+import AuthUserContext from '../../AuthUserContext'
 
 const Navigation = () =>
   <AuthUserContext.Consumer>
