@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import withAuthorization from '../withAuthorization'
+
+const authCondition = (authUser) => !!authUser
 
 const resetOrientation = (srcBase64, srcOrientation, callback) => {
     let img = new Image();
@@ -38,9 +41,9 @@ const resetOrientation = (srcBase64, srcOrientation, callback) => {
     }
 
     img.src = srcBase64
-}  
+}
 
-export class Marketplace extends Component {
+class Marketplace extends Component {
     state = {  }
 
     fileLoaded = (input) => {
@@ -196,3 +199,5 @@ export class Marketplace extends Component {
         )
     }
 }
+
+export default withAuthorization(authCondition)(Marketplace)

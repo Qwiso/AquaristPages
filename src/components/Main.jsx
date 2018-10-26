@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import withAuthorization from '../withAuthorization'
 
-export class Main extends Component {
+const authCondition = (authUser) => !!authUser
+
+class Main extends Component {
   state = {  }
-  render() { 
+  render() {
     return (
       <div>
-        <section name="actionBar" className="d-block">
+        {/* <section name="actionBar" className="d-block">
           <div className="container-fluid p-0 fixed-bottom" style={{height: "46px"}}>
             <div className="d-flex justify-content-around text-center">
               <div style={{cursor: "pointer"}} onClick={this.toggleLeftSidebar} onMouseEnter={this.actionButtonMouseEnter} onMouseLeave={this.actionButtonMouseLeave} className="col"><i className="fas fa-lg fa-list p-3"></i></div>
@@ -13,8 +16,10 @@ export class Main extends Component {
               <div style={{cursor: "pointer"}} onClick={this.toggleMapToolbar} onMouseEnter={this.actionButtonMouseEnter} onMouseLeave={this.actionButtonMouseLeave} className="col"><i className="fas fa-lg fa-list fa-flip-horizontal p-3"></i></div>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
     )
   }
 }
+
+export default withAuthorization(authCondition)(Main)
