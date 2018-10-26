@@ -23,7 +23,7 @@ firebase.initializeApp(firebaseConfig)
 
 const Logout = () => {
   firebase.auth().signOut()
-  return <Link to="/login" />
+  window.location.href = '/'
 }
 
 class App extends Component {
@@ -48,7 +48,7 @@ class App extends Component {
       <BrowserRouter>
         <div className='ontainer-fluid m-0'>
           <Navigation authUser={this.state.authUser} />
-          
+
           <div className='p-3'>
             <Route exact path="/" component={Marketplace} />
             <Route exact path="/profile" component={Profile} />
