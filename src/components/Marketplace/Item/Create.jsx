@@ -130,71 +130,69 @@ class CreateMarketItem extends Component {
     
     render() {
         return (
-            <div className={this.props.visible ? "" : "d-none"}>
-                <form id="form_createMarketItem">
-                    <div className="d-flex justify-content-center">
-                        <div className="col-6 pt-3">
-                            <div className="row pb-3">
-                                <div className="col">
-                                    <select defaultValue="1" onChange={() => {}} className="form-control" name="category" required>
-                                        <option value="1" disabled>Choose a Category</option>
-                                        <option value="flora">Flora</option>
-                                        <option value="fauna">Fauna</option>
-                                        <option value="hardware">Hardware</option>
-                                    </select>
-                                </div>
+            <form id="form_createMarketItem">
+                <div className="d-flex justify-content-center">
+                    <div className="col-6 pt-3">
+                        <div className="row pb-3">
+                            <div className="col">
+                                <select defaultValue="1" onChange={() => {}} className="form-control" name="category" required>
+                                    <option value="1" disabled>Choose a Category</option>
+                                    <option value="flora">Flora</option>
+                                    <option value="fauna">Fauna</option>
+                                    <option value="hardware">Hardware</option>
+                                </select>
                             </div>
+                        </div>
 
-                            <div className="row pb-3">
-                                <div className="col">
-                                    <input type="text" className="form-control" name="title" placeholder="What is the item?" required />
-                                </div>
+                        <div className="row pb-3">
+                            <div className="col">
+                                <input type="text" className="form-control" name="title" placeholder="What is the item?" required />
                             </div>
+                        </div>
 
-                            <div className="row pb-3">
-                                <div className="col">
-                                    <div className="input-group">
-                                        <div className="input-group-prepend">
-                                            <span className="input-group-text"><i className="fas fa-dollar-sign" aria-hidden="true"></i></span>
-                                        </div>
-                                        <input type="number" className="form-control" min="0.00" step="0.25" name="price" placeholder="0.00" required />
+                        <div className="row pb-3">
+                            <div className="col">
+                                <div className="input-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-dollar-sign" aria-hidden="true"></i></span>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div className="row pb-3">
-                                <div className="col">
-                                    <textarea rows="3" className="form-control" name="description" placeholder="Describe your item... (optional)"></textarea>
-                                </div>
-                            </div>
-
-                            <div className="row pb-3">
-                                <div className="col">
-                                
-                                </div>
-                            </div>
-
-                            <div className="row pb-3">
-                                <div className="col">
-                                    <div className="input-group d-flex flex-nowrap">
-                                        <div className="input-group-prepend">
-                                            <span className="input-group-text"><i className="far fa-file-image" aria-hidden="true"></i></span>
-                                        </div>
-                                        <input data-viewtype="create" type="file" accept="image/*" name="media_url" onChange={(e) => this.fileLoaded(e)} required />
-                                    </div>
-                                    <img className="img-fluid d-block mx-auto pt-3" />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col d-flex justify-content-end">
-                                    <button type="submit" className="btn btn-primary">Create</button>
+                                    <input type="number" className="form-control" min="0.00" step="0.25" name="price" placeholder="0.00" required />
                                 </div>
                             </div>
                         </div>
+
+                        <div className="row pb-3">
+                            <div className="col">
+                                <textarea rows="3" className="form-control" name="description" placeholder="Describe your item... (optional)"></textarea>
+                            </div>
+                        </div>
+
+                        <div className="row pb-3">
+                            <div className="col">
+                            
+                            </div>
+                        </div>
+
+                        <div className="row pb-3">
+                            <div className="col">
+                                <div className="input-group d-flex flex-nowrap">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="far fa-file-image" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input data-viewtype="create" type="file" accept="image/*" name="media_url" onChange={(e) => this.fileLoaded(e)} required />
+                                </div>
+                                <img className="img-fluid d-block mx-auto pt-3" />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col d-flex justify-content-end">
+                                <button type="submit" className="btn btn-primary">Create</button>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         )
     }
 }
