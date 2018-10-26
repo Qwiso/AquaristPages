@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 const resetOrientation = (srcBase64, srcOrientation, callback) => {
     let img = new Image();
@@ -40,9 +40,10 @@ const resetOrientation = (srcBase64, srcOrientation, callback) => {
     img.src = srcBase64
 }
 
-class MarketItemCreate extends Component {
+class CreateMarketItem extends Component {
     state = {  }
 
+    //#region image functions
     fileLoaded = (input) => {
         let file = input.target.files[0]
         if (file.type.match(/image.*/)) {
@@ -125,6 +126,7 @@ class MarketItemCreate extends Component {
     
         reader.readAsArrayBuffer(file.slice(0, 64 * 1024))
     }
+    //#endregion
     
     render() {
         return (
@@ -197,4 +199,4 @@ class MarketItemCreate extends Component {
     }
 }
  
-export default MarketItemCreate
+export default CreateMarketItem

@@ -46,13 +46,13 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className='container-fluid'>
+        <div className='container-fluid m-0 p-0'>
           <Navigation authUser={this.state.authUser} />
 
-          <Route path="/" component={Marketplace} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={Logout} />
+          <Route exact path="/" component={Marketplace} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
         </div>
       </BrowserRouter>
     )
