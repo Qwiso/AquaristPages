@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import withAuthorization from '../../withAuthorization'
+import withAuthorization from '../withAuthorization'
 
 class Profile extends Component {
     state = { }
