@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import firebase from 'firebase'
 
 const resetOrientation = (srcBase64, srcOrientation, callback) => {
     let img = new Image();
@@ -43,7 +42,6 @@ const resetOrientation = (srcBase64, srcOrientation, callback) => {
 
 class CreateMarketItem extends Component {
     state = {
-        db: firebase.database(),
         category: '',
         title: '',
         price: 0,
@@ -170,20 +168,14 @@ class CreateMarketItem extends Component {
         e.preventDefault()
         e.stopPropagation()
 
-        let item = {
-            uid: firebase.auth().currentUser.uid,
-            category: this.state.category,
-            title: this.state.title,
-            price: this.state.price,
-            description: this.state.description,
-            // image: this.state.image
-        }
-
-        this.state.db.ref('items').push().set(item).then((data) => {
-            // this.state.db.ref('images').push().set(item).then(() => {
-            
-            // })
-        })
+        // let item = {
+        //     uid: firebase.auth().currentUser.uid,
+        //     category: this.state.category,
+        //     title: this.state.title,
+        //     price: this.state.price,
+        //     description: this.state.description,
+        //     image: this.state.image
+        // }
     }
 
     render() {
