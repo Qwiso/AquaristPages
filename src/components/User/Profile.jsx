@@ -5,7 +5,6 @@ class Profile extends Component {
     state = { }
 
     render() {
-        console.log(this.props)
         return (
             <h3>{this.props.user.displayName}</h3>
         )

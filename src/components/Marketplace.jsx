@@ -31,6 +31,10 @@ class Marketplace extends Component {
             createItemVisible: false
         })
     }
+
+    onNewItem = (item) => {
+        console.log(item)
+    }
     
     render() {
         return (
@@ -46,7 +50,7 @@ class Marketplace extends Component {
                     isOpen={this.state.createItemVisible}
                     onRequestClose={this.createItemHide} >
 
-                    <CreateMarketItem />
+                    <CreateMarketItem newItem={this.onNewItem} />
                 </Modal>
             </div>
         )

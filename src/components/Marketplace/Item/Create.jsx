@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from 'firebase'
 
 const resetOrientation = (srcBase64, srcOrientation, callback) => {
     let img = new Image();
@@ -41,17 +42,20 @@ const resetOrientation = (srcBase64, srcOrientation, callback) => {
 }
 
 class CreateMarketItem extends Component {
-    state = {  }
-
-    //#region image functions
-    fileLoaded = (input) => {
-        let file = input.target.files[0]
-        if (file.type.match(/image.*/)) {
-            this.processImageFile(file, input)
-        }
+    state = {
+        db: firebase.database(),
+        category: '',
+        title: '',
+        price: 0,
+        description: '',
+        image: null
     }
 
+    //#region image functions
+
     processImageFile = (file, input) => {
+        let component = this
+
         this.getImageOrientation(file, function(orientation) {
             let reader = new FileReader()
             reader.onload = function (readerEvent) {
@@ -85,6 +89,7 @@ class CreateMarketItem extends Component {
                     })
                 }
                 image.src = readerEvent.target.result
+                component.setState({ image: readerEvent.target.result })
             }
             reader.readAsDataURL(file)
         })
@@ -128,6 +133,59 @@ class CreateMarketItem extends Component {
     }
     //#endregion
     
+    //#region on changes
+    itemCategoryChanged = (e) => {
+        this.setState({
+            category: e.target.value
+        })
+    }
+
+    itemTitleChanged = (e) => {
+        this.setState({
+            title: e.target.value
+        })
+    }
+
+    itemPriceChanged = (e) => {
+        this.setState({
+            price: parseFloat(e.target.value)
+        })
+    }
+
+    itemDescriptionChanged = (e) => {
+        this.setState({
+            description: e.target.value
+        })
+    }
+
+    itemImageChanged = (input) => {
+        let file = input.target.files[0]
+        if (file.type.match(/image.*/)) {
+            this.processImageFile(file, input)
+        }
+    }
+    //#endregion
+
+    createItem = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        let item = {
+            uid: firebase.auth().currentUser.uid,
+            category: this.state.category,
+            title: this.state.title,
+            price: this.state.price,
+            description: this.state.description,
+            // image: this.state.image
+        }
+
+        this.state.db.ref('items').push().set(item).then((data) => {
+            // this.state.db.ref('images').push().set(item).then(() => {
+            
+            // })
+        })
+    }
+
     render() {
         return (
             <form id="form_createMarketItem">
@@ -135,7 +193,7 @@ class CreateMarketItem extends Component {
                     <div className="col-8 pt-3">
                         <div className="row pb-3">
                             <div className="col">
-                                <select defaultValue="1" onChange={() => {}} className="form-control" name="category" required>
+                                <select defaultValue="1" onChange={this.itemCategoryChanged} className="form-control" name="category" required>
                                     <option value="1" disabled>Choose a Category</option>
                                     <option value="flora">Flora</option>
                                     <option value="fauna">Fauna</option>
@@ -146,7 +204,7 @@ class CreateMarketItem extends Component {
 
                         <div className="row pb-3">
                             <div className="col">
-                                <input type="text" className="form-control" name="title" placeholder="What is the item?" required />
+                                <input onChange={this.itemTitleChanged} type="text" className="form-control" name="title" placeholder="What is the item?" required />
                             </div>
                         </div>
 
@@ -156,14 +214,14 @@ class CreateMarketItem extends Component {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text"><i className="fas fa-dollar-sign" aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="number" className="form-control" min="0.00" step="0.25" name="price" placeholder="0.00" required />
+                                    <input onChange={this.itemPriceChanged} type="number" className="form-control" min="0.00" step="0.25" name="price" placeholder="0.00" required />
                                 </div>
                             </div>
                         </div>
 
                         <div className="row pb-3">
                             <div className="col">
-                                <textarea rows="3" className="form-control" name="description" placeholder="Describe your item... (optional)"></textarea>
+                                <textarea onChange={this.itemDescriptionChanged} rows="3" className="form-control" name="description" placeholder="Describe your item... (optional)"></textarea>
                             </div>
                         </div>
 
@@ -179,9 +237,9 @@ class CreateMarketItem extends Component {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text"><i className="far fa-file-image" aria-hidden="true"></i></span>
                                     </div>
-                                    <input data-viewtype="create" type="file" accept="image/*" name="media_url" onChange={(e) => this.fileLoaded(e)} required />
+                                    <input data-viewtype="create" type="file" accept="image/*" name="media_url" onChange={this.itemImageChanged} required />
                                 </div>
-                                <button type="submit" className="btn btn-primary float-right">Create</button>
+                                <button onClick={this.createItem} className="btn btn-primary float-right">Create</button>
                                 <img className="img-fluid d-block mx-auto pt-3" />
                             </div>
                         </div>

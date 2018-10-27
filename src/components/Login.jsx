@@ -3,7 +3,7 @@ import firebase from 'firebase'
 
 export default class Login extends Component {
     state = {
-        db: this.db = firebase.database()
+        db: firebase.database()
     }
 
     facebookLogin = () => {

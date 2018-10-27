@@ -41,6 +41,20 @@ class App extends Component {
         ? this.setState({ authUser })
         : this.setState({ authUser: null })
     })
+
+    firebase.database().ref('items').on('child_added', (data) => {
+      // let uid = data.node_.children_.root_.key
+      let item = data.val()
+      console.log( item )
+    })
+  }
+
+  componentDidUpdate() {
+    if (this.state.authUser) {
+      firebase.database().ref('items').orderByChild('uid').equalTo(firebase.auth().currentUser.uid).on('child_added', (snapshot) => {
+        console.log(snapshot.key)
+      })
+    }
   }
 
   render() {
