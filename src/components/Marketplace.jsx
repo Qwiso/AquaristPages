@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withAuthorization from '../withAuthorization'
 
 import Modal from 'react-modal'
-import CreateMarketItem from './Marketplace/Item/Create'
+import CreateMarketItem from './Items/Create'
 
 Modal.setAppElement('#root')
 const modalStyle = {
