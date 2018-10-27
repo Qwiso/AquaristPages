@@ -50,7 +50,6 @@ class CreateMarketItem extends Component {
     }
 
     //#region image functions
-
     processImageFile = (file, input) => {
         let component = this
 
@@ -167,6 +166,8 @@ class CreateMarketItem extends Component {
     createItem = (e) => {
         e.preventDefault()
         e.stopPropagation()
+
+        console.log(this.state)
 
         // let item = {
         //     uid: firebase.auth().currentUser.uid,
