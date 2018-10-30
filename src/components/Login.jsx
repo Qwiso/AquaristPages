@@ -5,8 +5,12 @@ export default class Login extends Component {
         
     }
 
+    componentDidMount() {
+        console.log('login')
+    }
+
     facebookLogin = () => {
-        
+        console.log('aaa')
     }
 
     render() { 

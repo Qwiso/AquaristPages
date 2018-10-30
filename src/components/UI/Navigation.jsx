@@ -1,13 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import AuthUserContext from '../../AuthUserContext'
-import Login from '../Login'
 
 const Navigation = () =>
   <AuthUserContext.Consumer>
     {authUser => authUser
       ? <NavigationAuth />
-      : <Login />
+      : window.location.pathname === '/login' ? null : <Redirect to='/login' />
     }
   </AuthUserContext.Consumer>
 
