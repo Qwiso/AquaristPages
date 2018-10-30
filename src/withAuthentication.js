@@ -1,5 +1,4 @@
 import React from 'react'
-import firebase from 'firebase'
 import AuthUserContext from './AuthUserContext'
 
 const withAuthentication = (Component) => {
@@ -13,11 +12,12 @@ const withAuthentication = (Component) => {
     }
 
     componentDidMount() {
-      firebase.auth().onAuthStateChanged(authUser => {
-        authUser
-          ? this.setState({ authUser })
-          : this.setState({ authUser: null })
-      })
+      // TODO auth event
+      // authUser => {
+      //   authUser
+      //     ? this.setState({ authUser })
+      //     : this.setState({ authUser: null })
+      // })
     }
 
     render() {
