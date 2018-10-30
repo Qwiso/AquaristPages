@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import firebase from 'firebase'
+import functions from 'firebase-functions'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
@@ -10,6 +11,8 @@ import withAuthentication from './withAuthentication'
 import Profile from './components/Profile'
 import Login from './components/Login'
 import Marketplace from './components/Marketplace'
+
+console.log(functions.config().sometest.foo)
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
