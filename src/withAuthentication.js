@@ -12,6 +12,7 @@ const withAuthentication = (Component) => {
     }
 
     componentDidMount() {
+      console.log('ication')
       // TODO auth event
       // authUser => {
       //   authUser
