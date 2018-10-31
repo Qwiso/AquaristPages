@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import Navigation from './components/UI/Navigation'
 import withAuthentication from './withAuthentication'
 
+import Main from './components/Main'
 import Profile from './components/Profile'
 import Login from './components/Login'
 import Marketplace from './components/Marketplace'
@@ -23,7 +24,7 @@ firebase.initializeApp(firebaseConfig)
 
 const Logout = () => {
   firebase.auth().signOut()
-  return <Redirect to='/' />
+  return <Redirect to='/login' />
 }
 
 class App extends Component {
@@ -50,10 +51,11 @@ class App extends Component {
           <Navigation authUser={this.state.authUser} />
 
           <div className='p-3'>
-            <Route exact path="/markerplace" component={Marketplace} />
+            <Route exact path="/" component={Main} />
+            <Route exact path="/marketplace" component={Marketplace} />
             <Route exact path="/profile" component={Profile} />
-            <Route exact path="/login" component={Login} />
             <Route exact path="/logout" component={Logout} />
+            <Route exact path="/login" component={Login} />
           </div>
         </div>
       </BrowserRouter>

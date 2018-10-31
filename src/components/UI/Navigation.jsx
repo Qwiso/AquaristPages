@@ -6,7 +6,7 @@ const Navigation = () =>
   <AuthUserContext.Consumer>
     {authUser => authUser
       ? <NavigationAuth />
-      : window.location.pathname === '/login' ? (authUser ? null : null) : <Redirect to='/login' />
+      : null
     }
   </AuthUserContext.Consumer>
 
