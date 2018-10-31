@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 const resetOrientation = (srcBase64, srcOrientation, callback) => {
     let img = new Image();
@@ -42,6 +43,9 @@ const resetOrientation = (srcBase64, srcOrientation, callback) => {
 
 class CreateMarketItem extends Component {
     state = {
+        uploading: false,
+        error: false,
+        success: false,
         category: '',
         title: '',
         price: 0,
@@ -157,6 +161,7 @@ class CreateMarketItem extends Component {
 
     itemImageChanged = (input) => {
         let file = input.target.files[0]
+        if (!file) return
         if (file.type.match(/image.*/)) {
             this.processImageFile(file, input)
         }
@@ -167,7 +172,25 @@ class CreateMarketItem extends Component {
         e.preventDefault()
         e.stopPropagation()
 
-        console.log(this.state)
+        this.setState({ uploading: true })
+
+        setTimeout(() => {
+            this.setState({ uploading: false, error: false, success: true })
+
+            setTimeout(() => {
+                this.props.itemCreated(this.state)
+            }, 1000)
+        }, 1000)
+
+        // let headers = {
+        //     'X-Mashape-Key': process.env.REACT_APP_X_MASHAPE_KEY,
+        //     'Authorization': 'Client-ID ' + process.env.REACT_APP_IMGUR_APP_ID
+        // }
+
+        // axios.post('https://imgur-apiv3.p.mashape.com/3/image', this.state.image.split(',')[1], { headers: headers }).then((res) => {
+        //     console.log(res)
+        //     this.setState({ uploading: false })
+        // })
 
         // let item = {
         //     uid: firebase.auth().currentUser.uid,
@@ -180,6 +203,20 @@ class CreateMarketItem extends Component {
     }
 
     render() {
+        let { uploading, success, error } = this.state
+
+        if (error) {
+            return <h4>error! {error}</h4>
+        }
+        
+        if (uploading) {
+            return <h4>working...</h4>
+        }
+
+        if (success) {
+            return <h3>success</h3>
+        }
+
         return (
             <form id="form_createMarketItem">
                 <div className="d-flex justify-content-center">
@@ -215,12 +252,6 @@ class CreateMarketItem extends Component {
                         <div className="row pb-3">
                             <div className="col">
                                 <textarea onChange={this.itemDescriptionChanged} rows="3" className="form-control" name="description" placeholder="Describe your item... (optional)"></textarea>
-                            </div>
-                        </div>
-
-                        <div className="row pb-3">
-                            <div className="col">
-                            
                             </div>
                         </div>
 
