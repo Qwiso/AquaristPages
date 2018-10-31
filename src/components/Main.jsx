@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import withAuthorization from '../withAuthorization'
 
 class Main extends Component {
   state = {  }
@@ -9,4 +10,5 @@ class Main extends Component {
   }
 }
  
-export default Main
+const authCondition = (authUser) => !!authUser
+export default withAuthorization(authCondition)(Main)

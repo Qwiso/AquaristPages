@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 
 const resetOrientation = (srcBase64, srcOrientation, callback) => {
     let img = new Image();

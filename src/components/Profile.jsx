@@ -40,20 +40,25 @@ class Profile extends Component {
     }
 
     render() {
-        return (
-            <div>
+        if (this.props.user.uid === '3wxoK4UU8kROnyguxuiw76mRVCG3') {
+            return (
+                <div>
+                    <button className='btn btn-info col-2' onClick={this.createItemShow}>Create Item</button>
+
+                    <Modal
+                        style={modalStyle}
+                        isOpen={this.state.createItemVisible}
+                        onRequestClose={this.createItemHide} >
+
+                        <CreateMarketItem itemCreated={this.onItemCreated} />
+                    </Modal>
+                </div>
+            )
+        } else {
+            return (
                 <h3>{this.props.user.displayName}</h3>
-                <button className='btn btn-info col-2' onClick={this.createItemShow}>Create Item</button>
-
-                <Modal
-                    style={modalStyle}
-                    isOpen={this.state.createItemVisible}
-                    onRequestClose={this.createItemHide} >
-
-                    <CreateMarketItem itemCreated={this.onItemCreated} />
-                </Modal>
-            </div>
-        )
+            )
+        }
     }
 }
 
