@@ -5,12 +5,12 @@ import AuthUserContext from '../../AuthUserContext'
 const Navigation = () =>
   <AuthUserContext.Consumer>
     {authUser => authUser
-      ? <NavigationAuth authUser={authUser} />
+      ? <NavigationAuth />
       : null
     }
   </AuthUserContext.Consumer>
 
-const NavigationAuth = ({...props}) => {
+const NavigationAuth = () => {
   return (
     <div className='d-flex text-center justify-content-center bg-light py-2'>
       <div className='col-md-2'><Link to='/marketplace'>Marketplace</Link></div>
