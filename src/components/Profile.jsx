@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import withAuthorization from '../withAuthorization'
 
 import Modal from 'react-modal'
+import firebase from 'firebase'
+
 import CreateMarketItem from './Items/Create'
 
 Modal.setAppElement('#root')
@@ -33,9 +35,16 @@ class Profile extends Component {
     }
 
     onItemCreated = (item) => {
-        console.log(item)
-        this.setState({
-            createItemVisible: false
+        item.uid = this.props.user.uid
+        let newItemKey = firebase.database().ref().child('items').push().key
+
+        let updates = {}
+        updates['/items/' + newItemKey] = item
+        updates['/users/' + item.uid + '/items/' + newItemKey] = item
+        firebase.database().ref().update(updates, (error) => {
+            this.setState({
+                createItemVisible: false
+            })
         })
     }
 
@@ -50,7 +59,7 @@ class Profile extends Component {
                         isOpen={this.state.createItemVisible}
                         onRequestClose={this.createItemHide} >
 
-                        <CreateMarketItem itemCreated={this.onItemCreated} />
+                        {this.props.user.isAnonymous ? null : <CreateMarketItem itemCreated={this.onItemCreated} />}
                     </Modal>
                 </div>
             )

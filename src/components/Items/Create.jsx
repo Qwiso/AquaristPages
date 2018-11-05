@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 
 const resetOrientation = (srcBase64, srcOrientation, callback) => {
     let img = new Image();
@@ -172,34 +172,29 @@ class CreateMarketItem extends Component {
         e.preventDefault()
         e.stopPropagation()
 
+        if (!this.state.image) return null
+
         this.setState({ uploading: true })
 
-        setTimeout(() => {
-            this.setState({ uploading: false, error: false, success: true })
+        let headers = {
+            'X-Mashape-Key': process.env.REACT_APP_X_MASHAPE_KEY,
+            'Authorization': 'Client-ID ' + process.env.REACT_APP_IMGUR_APP_ID
+        }
 
-            setTimeout(() => {
-                this.props.itemCreated(this.state)
-            }, 1000)
-        }, 1000)
+        axios.post('https://imgur-apiv3.p.mashape.com/3/image', this.state.image.split(',')[1], { headers: headers }).then((res) => {
+            let item = {
+                category: this.state.category,
+                title: this.state.title,
+                price: this.state.price,
+                description: this.state.description,
+                image: res.data.data.link,
+                deletehash: res.data.data.deletehash
+            }
 
-        // let headers = {
-        //     'X-Mashape-Key': process.env.REACT_APP_X_MASHAPE_KEY,
-        //     'Authorization': 'Client-ID ' + process.env.REACT_APP_IMGUR_APP_ID
-        // }
+            this.setState({ uploading: false, success: true })
 
-        // axios.post('https://imgur-apiv3.p.mashape.com/3/image', this.state.image.split(',')[1], { headers: headers }).then((res) => {
-        //     console.log(res)
-        //     this.setState({ uploading: false })
-        // })
-
-        // let item = {
-        //     uid: firebase.auth().currentUser.uid,
-        //     category: this.state.category,
-        //     title: this.state.title,
-        //     price: this.state.price,
-        //     description: this.state.description,
-        //     image: this.state.image
-        // }
+            this.props.itemCreated(item)
+        })
     }
 
     render() {
@@ -214,13 +209,13 @@ class CreateMarketItem extends Component {
         }
 
         if (success) {
-            return <h3>success</h3>
+            return <h4>success</h4>
         }
 
         return (
             <form id="form_createMarketItem">
                 <div className="d-flex justify-content-center">
-                    <div className="col-8 pt-3">
+                    <div className="col-10 pt-3">
                         <div className="row pb-3">
                             <div className="col">
                                 <select defaultValue="1" onChange={this.itemCategoryChanged} className="form-control" name="category" required>
