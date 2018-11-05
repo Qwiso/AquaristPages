@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 
 export default class Login extends Component {
-    state = {
-        // db: this.db = firebase.database()
-    }
+    state = {  }
 
     anonymousLogin = () => {
         console.log('anon')
