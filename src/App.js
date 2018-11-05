@@ -51,11 +51,11 @@ class App extends Component {
           <Navigation authUser={this.state.authUser} />
 
           <div className='p-3'>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/marketplace" component={Marketplace} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/logout" component={Logout} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Main} user={this.state.authUser} />
+            <Route exact path="/marketplace" component={Marketplace} user={this.state.authUser} />
+            <Route exact path="/profile" component={Profile} user={this.state.authUser} />
+            <Route exact path="/logout" component={Logout} user={this.state.authUser} />
+            <Route exact path="/login" component={Login} user={this.state.authUser} />
           </div>
         </div>
       </BrowserRouter>
