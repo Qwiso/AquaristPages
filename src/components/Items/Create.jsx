@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from 'firebase'
 import axios from 'axios'
 
 const resetOrientation = (srcBase64, srcOrientation, callback) => {
@@ -191,7 +192,18 @@ class CreateMarketItem extends Component {
                 deletehash: res.data.data.deletehash
             }
 
-            this.setState({ uploading: false, success: true })
+            firebase.auth().currentUser.getIdToken().then((idt) => {
+                let data = {
+                    item: item,
+                    idt: idt
+                }
+
+                axios.post('/item/create', data, (res) => {
+                    console.log(res)
+                    
+                    this.setState({ uploading: false, success: true })
+                })
+            })
 
             this.props.itemCreated(item)
         })

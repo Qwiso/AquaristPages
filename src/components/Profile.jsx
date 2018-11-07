@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import withAuthorization from '../withAuthorization'
-
 import Modal from 'react-modal'
-import firebase from 'firebase'
 
 import CreateMarketItem from './Items/Create'
 
@@ -30,20 +28,12 @@ class Profile extends Component {
         this.setState({ createItemVisible: false })
     }
 
-    onItemCreated = (item) => {
-        item.uid = this.props.user.uid
-        let newItemKey = firebase.database().ref().child('items').push().key
-
-        let updates = {}
-        updates['/items/' + newItemKey] = item
-        updates['/users/' + this.props.user.uid + '/items/' + newItemKey] = item
-        firebase.database().ref().update(updates, (error) => {
-            this.setState({ createItemVisible: false })
-        })
+    onItemCreated = () => {
+        this.setState({ createItemVisible: false })
     }
 
     render() {
-        if (this.props.user.uid === '3wxoK4UU8kROnyguxuiw76mRVCG3') {
+        if (!this.props.user.isAnonymous) {
             return (
                 <div>
                     <button className='btn btn-info col-2' onClick={this.createItemShow}>Create Item</button>
@@ -51,15 +41,11 @@ class Profile extends Component {
                     <Modal
                         style={modalStyle}
                         isOpen={this.state.createItemVisible}
-                        onRequestClose={this.createItemHide} >
+                        onRequestClose={this.createItemHide}>
 
-                        {this.props.user.isAnonymous ? null : <CreateMarketItem itemCreated={this.onItemCreated} />}
+                        <CreateMarketItem itemCreated={this.onItemCreated} />}
                     </Modal>
                 </div>
-            )
-        } else {
-            return (
-                <h3>{this.props.user.displayName}</h3>
             )
         }
     }
