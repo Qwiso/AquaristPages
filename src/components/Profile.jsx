@@ -23,15 +23,11 @@ class Profile extends Component {
     }
 
     createItemShow = () => {
-        this.setState({
-            createItemVisible: true
-        })
+        this.setState({ createItemVisible: true })
     }
     
     createItemHide = () => {
-        this.setState({
-            createItemVisible: false
-        })
+        this.setState({ createItemVisible: false })
     }
 
     onItemCreated = (item) => {
@@ -40,11 +36,9 @@ class Profile extends Component {
 
         let updates = {}
         updates['/items/' + newItemKey] = item
-        updates['/users/' + item.uid + '/items/' + newItemKey] = item
+        updates['/users/' + this.props.user.uid + '/items/' + newItemKey] = item
         firebase.database().ref().update(updates, (error) => {
-            this.setState({
-                createItemVisible: false
-            })
+            this.setState({ createItemVisible: false })
         })
     }
 
