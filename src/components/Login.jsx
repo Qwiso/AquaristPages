@@ -5,7 +5,6 @@ export default class Login extends Component {
     state = {  }
 
     anonymousLogin = () => {
-        console.log('anon')
         firebase.auth().signInAnonymously().then(() => {
             window.location.href = "/"
         }).catch(function(error) {
