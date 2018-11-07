@@ -1,16 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import AuthUserContext from '../../AuthUserContext'
+import withAuthorization from '../../withAuthorization';
 
-const Navigation = () =>
-  <AuthUserContext.Consumer>
-    {authUser => authUser
-      ? <NavigationAuth />
-      : null
-    }
-  </AuthUserContext.Consumer>
-
-const NavigationAuth = () => {
+const Navigation = () => {
   return (
     <div className='d-flex text-center justify-content-center bg-light py-2'>
       <div className='col-md-2'><Link to='/marketplace'>Marketplace</Link></div>
@@ -20,5 +12,5 @@ const NavigationAuth = () => {
   )
 }
   
-
-export default Navigation
+const authCondition = (authUser) => !!authUser
+export default withAuthorization(authCondition)(Navigation)
