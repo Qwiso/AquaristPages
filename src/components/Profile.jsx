@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import firebase from 'firebase'
+import axios from 'axios'
 import withAuthorization from '../withAuthorization'
 import Modal from 'react-modal'
 
 import CreateMarketItem from './Items/Create'
+import ListItems from './Items/List'
 
 Modal.setAppElement('#root')
 const modalStyle = {
@@ -17,7 +20,16 @@ const modalStyle = {
 
 class Profile extends Component {
     state = {
+        userItems: [],
         createItemVisible: false
+    }
+
+    componentDidMount() {
+        firebase.auth().currentUser.getIdToken().then((idt) => {
+            axios.post('/', { idt: idt }).then((res) => {
+                this.setState({ userItems: res.data.items })
+            })
+        })
     }
 
     createItemShow = () => {
@@ -34,9 +46,14 @@ class Profile extends Component {
 
     render() {
         if (!this.props.user.isAnonymous) {
+            let { userItems } = this.state
             return (
                 <div>
                     <button className='btn btn-info col-2' onClick={this.createItemShow}>Create Item</button>
+
+                    <hr />
+
+                    <ListItems items={userItems} />
 
                     <Modal
                         style={modalStyle}

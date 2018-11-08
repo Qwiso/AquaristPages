@@ -12,7 +12,6 @@ class Marketplace extends Component {
 
     componentDidMount() {
         axios.get('marketplace').then((res) => {
-            console.log(res)
             this.setState({items: res.data.items, loading: false })
         })
     }

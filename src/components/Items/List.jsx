@@ -2,14 +2,12 @@ import React, { Component } from 'react'
 import Show from './Show'
 
 class ListItems extends Component {
-    state = {
-        items: this.props.items
-    }
-
     render() {
+        let { items } = this.props
+        
         return (
             <div className='d-flex'>
-                {this.state.items.map((item, index) => {
+                {items.map((item, index) => {
                     return <Show key={index} item={item} />
                 })}
             </div>
