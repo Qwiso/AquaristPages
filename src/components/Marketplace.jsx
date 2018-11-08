@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import withAuthorization from '../withAuthorization'
 import axios from 'axios'
 
+import ListItems from './Items/List'
+
 class Marketplace extends Component {
     state = {
         loading: true,
@@ -18,18 +20,16 @@ class Marketplace extends Component {
     render() {
         let { loading, items } = this.state
 
-        return (
-            <div>
-                <div className={loading ? 'd-flex' : 'd-none'}>
+        if (loading) {
+            return (
+                <div className='d-flex'>
                     <i className='fas fa-2x fa-spinner fa-pulse'></i>
                 </div>
-                
-                <div className={loading ? 'd-none' : 'd-flex'}>
-                    {items.map((item) => {
-                        return <h3>{item.title}</h3>
-                    })}
-                </div>
-            </div>
+            )
+        }
+
+        return (
+            <ListItems items={items} />
         )
     }
 }

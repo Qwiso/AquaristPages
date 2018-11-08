@@ -193,14 +193,13 @@ class CreateMarketItem extends Component {
             }
 
             firebase.auth().currentUser.getIdToken().then((idt) => {
+                item.user_id = firebase.auth().currentUser.uid
                 let data = {
                     item: item,
                     idt: idt
                 }
 
                 axios.post('/item/create', data, (res) => {
-                    console.log(res)
-                    
                     this.setState({ uploading: false, success: true })
                 })
             })
