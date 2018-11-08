@@ -43,7 +43,7 @@ class Profile extends Component {
                         isOpen={this.state.createItemVisible}
                         onRequestClose={this.createItemHide}>
 
-                        <CreateMarketItem itemCreated={this.onItemCreated} />}
+                        <CreateMarketItem itemCreated={this.onItemCreated} />
                     </Modal>
                 </div>
             )
