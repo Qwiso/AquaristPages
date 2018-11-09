@@ -6,7 +6,7 @@ class ListItems extends Component {
         let { items } = this.props
         
         return (
-            <div className='col d-flex flex-wrap justify-content-center justify-content-md-start'>
+            <div className='col d-flex flex-wrap justify-content-center'>
                 {items.map((item, index) => {
                     return <Show key={index} item={item} />
                 })}

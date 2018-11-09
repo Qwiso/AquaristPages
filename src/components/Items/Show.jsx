@@ -10,7 +10,7 @@ class Show extends Component {
         let { item } = this.props
 
         return (
-            <div style={{minWidth: 250, maxWidth: 250, minHeight: 305, maxHeight: 305}} className='shadow mr-5 mb-5' data-category={item.category}>
+            <div style={{minWidth: 250, maxWidth: 250, minHeight: 305, maxHeight: 305}} className='shadow mx-auto mb-3' data-category={item.category}>
                 <div className='row justify-content-end pr-3'>
                     <div className='position-absolute btn btn-secondary pt-0 pb-1 px-1'>
                         <i className='fa fa-xs fa-edit'></i>
