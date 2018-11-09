@@ -53,7 +53,7 @@ class Marketplace extends Component {
 
         return (
             <div>
-                <button className='btn btn-info col-sm-2' onClick={this.showMarketplaceFilters}>Filter Items</button>
+                <button className='btn btn-primary' onClick={this.showMarketplaceFilters}><i className="fa fa-list"></i> Filter Items</button>
 
                 <hr/>
                 

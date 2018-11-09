@@ -47,14 +47,13 @@ class Profile extends Component {
             return <Loading />
 
         if (!this.props.user.isAnonymous) {
-            let { userItems } = this.state
             return (
                 <div>
-                    <button className='btn btn-info col-sm-2' onClick={this.createItemShow}>Create Item</button>
+                    <button className='btn btn-primary' onClick={this.createItemShow}><i className="fa fa-plus"></i> Create Item</button>
 
                     <hr />
 
-                    <ListItems items={userItems} />
+                    <ListItems items={this.state.userItems} />
 
                     <Modal
                         style={modalStyle}
