@@ -248,11 +248,11 @@ class CreateMarketItem extends Component {
                             </div>
                         </div>
 
-                        <div className="row pb-3">
+                        {/* <div className="row pb-3">
                             <div className="col">
                                 <input onChange={this.itemZipcodeChanged} type="text" className="form-control" name="zipcode" placeholder="What zipcode?" required />
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="row pb-3">
                             <div className="col">
