@@ -4,6 +4,7 @@ import axios from 'axios'
 import withAuthorization from '../withAuthorization'
 import Modal from 'react-modal'
 
+import Loading from './UI/Loading'
 import CreateMarketItem from './Items/Create'
 import ListItems from './Items/List'
 
@@ -17,13 +18,14 @@ const modalStyle = {
 class Profile extends Component {
     state = {
         userItems: [],
-        createItemVisible: false
+        createItemVisible: false,
+        loading: true
     }
 
     componentDidMount() {
         firebase.auth().currentUser.getIdToken().then((idt) => {
             axios.post('/profile/items', { idt: idt }).then((res) => {
-                this.setState({ userItems: res.data.items })
+                this.setState({ userItems: res.data.items, loading: false })
             })
         })
     }
@@ -41,6 +43,9 @@ class Profile extends Component {
     }
 
     render() {
+        if (this.state.loading)
+            return <Loading />
+
         if (!this.props.user.isAnonymous) {
             let { userItems } = this.state
             return (

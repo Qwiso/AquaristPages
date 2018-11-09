@@ -3,6 +3,7 @@ import withAuthorization from '../withAuthorization'
 import axios from 'axios'
 import Modal from 'react-modal'
 
+import Loading from './UI/Loading'
 import ListItems from './Items/List'
 
 Modal.setAppElement('#root')
@@ -46,9 +47,7 @@ class Marketplace extends Component {
 
         if (loading) {
             return (
-                <div className='d-flex'>
-                    <i className='fas fa-2x fa-spinner fa-pulse'></i>
-                </div>
+                <Loading />
             )
         }
 
