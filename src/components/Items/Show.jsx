@@ -1,20 +1,34 @@
 import React, { Component } from 'react'
 
 class Show extends Component {
+
+    showMarketItem = () => {
+
+    }
+
     render() {
         let { item } = this.props
         return (
-            <div style={{width: 220}} className='mx-auto mb-4 border rounded text-center bg-light' data-category={item.category}>
-                <p className='m-0 py-2 text-truncate'>{item.title}</p>
-                <div className='position-absolute text-white bg-secondary px-2'>
-                    <small>${item.price}</small>
+            <div style={{minWidth: 250, maxWidth: 250, minHeight: 305, maxHeight: 305}} className='shadow mr-5 mb-5' data-category={item.category}>
+                <div className='row justify-content-end pr-3'>
+                    <div className='position-absolute btn btn-secondary pt-0 pb-1 px-1'>
+                        <i className='fa fa-xs fa-edit'></i>
+                    </div>
                 </div>
-                <div style={{overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: 220, maxWidth: 220, minHeight: 220, maxHeight: 220}}>
-                    <img src={item.image} />
+                <div className='row justify-content-start pl-3'>
+                    <div className='position-absolute badge badge-secondary p-2 align-middle'>${item.price}</div>
                 </div>
-                <div className='p-2 text-truncate'>
-                    {item.description} <br/>
-                    <a className='border-0 m-0 p-0' href='#'>read more</a>
+                <div style={{overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: 250, maxWidth: 250, minHeight: 250, maxHeight: 250}}>
+                    <a onClick={this.showMarketItem} style={{cursor: 'pointer'}}>
+                        <img src={item.image} />
+                    </a>
+                </div>
+                <div className='row pb-2'>
+                    <div className='col mx-2 text-truncate'>
+                        <small><b>{item.title}</b></small>
+                        <br />
+                        <small className='text-muted'>{new Date(item.created_at).toLocaleString()}</small>
+                    </div>
                 </div>
             </div>
         )
