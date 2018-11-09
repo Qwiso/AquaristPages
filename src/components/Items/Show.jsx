@@ -21,7 +21,7 @@ class Show extends Component {
                 </div>
                 <div style={{overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: 250, maxWidth: 250, minHeight: 250, maxHeight: 250}}>
                     <a onClick={this.showMarketItem} style={{cursor: 'pointer'}}>
-                        <img src={item.image} />
+                        <img src={item.image} style={{maxHeight: 250}} />
                     </a>
                 </div>
                 <div className='row pb-2'>
