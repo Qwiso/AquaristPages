@@ -148,6 +148,10 @@ class CreateMarketItem extends Component {
         })
     }
 
+    itemZipcodeChanged = (e) => {
+        // let zipcode = e.target.value
+    }
+
     itemPriceChanged = (e) => {
         this.setState({
             price: parseFloat(e.target.value)
@@ -226,7 +230,7 @@ class CreateMarketItem extends Component {
         return (
             <form id="form_createMarketItem">
                 <div className="d-flex justify-content-center">
-                    <div className="col-10 pt-3">
+                    <div className="col p-0 m-0">
                         <div className="row pb-3">
                             <div className="col">
                                 <select defaultValue="1" onChange={this.itemCategoryChanged} className="form-control" name="category" required>
@@ -241,6 +245,12 @@ class CreateMarketItem extends Component {
                         <div className="row pb-3">
                             <div className="col">
                                 <input onChange={this.itemTitleChanged} type="text" className="form-control" name="title" placeholder="What is the item?" required />
+                            </div>
+                        </div>
+
+                        <div className="row pb-3">
+                            <div className="col">
+                                <input onChange={this.itemZipcodeChanged} type="text" className="form-control" name="zipcode" placeholder="What zipcode?" required />
                             </div>
                         </div>
 

@@ -9,10 +9,7 @@ import ListItems from './Items/List'
 
 Modal.setAppElement('#root')
 const modalStyle = {
-    content: {
-        width: '60%',
-        left: '20%'
-    },
+    
     overlay: {
         background: 'rgba(0,0,0,0.5)'
     }
@@ -26,7 +23,7 @@ class Profile extends Component {
 
     componentDidMount() {
         firebase.auth().currentUser.getIdToken().then((idt) => {
-            axios.post('/', { idt: idt }).then((res) => {
+            axios.post('/profile/items', { idt: idt }).then((res) => {
                 this.setState({ userItems: res.data.items })
             })
         })
@@ -49,7 +46,7 @@ class Profile extends Component {
             let { userItems } = this.state
             return (
                 <div>
-                    <button className='btn btn-info col-2' onClick={this.createItemShow}>Create Item</button>
+                    <button className='btn btn-info col-sm-2' onClick={this.createItemShow}>Create Item</button>
 
                     <hr />
 
