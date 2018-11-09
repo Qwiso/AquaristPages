@@ -8,6 +8,7 @@ class Show extends Component {
 
     render() {
         let { item } = this.props
+
         return (
             <div style={{minWidth: 250, maxWidth: 250, minHeight: 305, maxHeight: 305}} className='shadow mr-5 mb-5' data-category={item.category}>
                 <div className='row justify-content-end pr-3'>
