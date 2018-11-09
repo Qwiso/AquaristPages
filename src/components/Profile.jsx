@@ -9,7 +9,6 @@ import ListItems from './Items/List'
 
 Modal.setAppElement('#root')
 const modalStyle = {
-    
     overlay: {
         background: 'rgba(0,0,0,0.5)'
     }
