@@ -47,7 +47,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className='ontainer-fluid m-0'>
+        <div className='container-fluid p-0 m-0'>
           <Navigation />
 
           <div className='p-3'>
